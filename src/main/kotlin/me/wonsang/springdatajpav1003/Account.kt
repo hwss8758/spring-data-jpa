@@ -30,6 +30,8 @@ data class Account(
         var created: Date = Date(),
         // 컬럼으로 매핑되지 않는 어노테이션.
         @Transient
-        var no: String = ""
+        var no: String = "",
+        @Embedded
+        var address: Address? = null
 ) {
 }
