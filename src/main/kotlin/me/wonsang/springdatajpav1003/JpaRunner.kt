@@ -20,11 +20,33 @@ class JpaRunner : ApplicationRunner {
         val account = Account(username = "yiseo",
                 password = "jpa")
 
+        //--------------------------------------------
+        // ManyToOne
+        //--------------------------------------------
+        //val study = Study(name = "Spring data JPA", owner = account)
+
+        //--------------------------------------------
+        // OneToMany
+        //--------------------------------------------
+        //val study = Study(name = "Spring data JPA")
+        //account.studies.add(study)
+
+        //--------------------------------------------
+        // 양방향관계.
+        // 아래의 예제에서 관계의 주인은 study => ManyToOne을 가지고 있는 쪽.
+        // 관계의 주인인 쪽에다가 관계를 맺어줘야한다.
+        // account, study 모두 설정해줘야한다.
+        //--------------------------------------------
+        val study = Study(name = "Spring data JPA")
+        // account.studies?.add(study)
+        // study.owner = account
+        account.addStudy(study)
         //-----------------------------------------------------
         // hibernate session 추출을 통해 account 저장
         //-----------------------------------------------------
         val session = entityManager.unwrap(Session::class.java)
         session.save(account)
+        session.save(study)
 
         //-----------------------------------------------------
         // entitymanager 사용하여 처리

@@ -2,6 +2,7 @@ package me.wonsang.springdatajpav1003
 
 import java.util.*
 import javax.persistence.*
+import kotlin.collections.HashSet
 
 // 객체세상에서 부르는 이름
 // 보통 클래스와 같은 이름을 사용하기 때문에 값을 변경하지 않음.
@@ -32,6 +33,28 @@ data class Account(
         @Transient
         var no: String = "",
         @Embedded
-        var address: Address? = null
+        var address: Address? = null,
+        //---------------------------------------------
+        // one to many는 데이터 타입이 collection임.
+        // @OneToMany
+        //---------------------------------------------
+        // @OneToMany
+        // var studies: MutableSet<Study> = HashSet<Study>()
+
+        //---------------------------------------------
+        // 양방향 관계 설정 시 manyToOne과 관련된 칼럼을 설정해 준다.
+        // 양방향 관계 설정 시에는 외래키를 가진 쪽이 owner임.
+        //---------------------------------------------
+        @OneToMany(mappedBy = "owner")
+        var studies: MutableSet<Study>? = null
 ) {
+    fun addStudy(study: Study) {
+        this.studies?.add(study)
+        study.owner = this
+    }
+
+    fun removeStudy(study: Study) {
+        this.studies?.remove(study)
+        study.owner = null
+    }
 }
