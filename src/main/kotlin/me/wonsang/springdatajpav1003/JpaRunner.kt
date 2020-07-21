@@ -17,7 +17,7 @@ class JpaRunner : ApplicationRunner {
     lateinit var entityManager: EntityManager
 
     override fun run(args: ApplicationArguments?) {
-        val account = Account(username = "wonsang",
+        val account = Account(username = "yiseo",
                 password = "jpa")
 
         //-----------------------------------------------------
