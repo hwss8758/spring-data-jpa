@@ -17,22 +17,28 @@ class JpaCascadeRunner : ApplicationRunner {
     lateinit var entityManager: EntityManager
 
     override fun run(args: ApplicationArguments?) {
-        val post = Post(title = "Spring Data Jpa...")
-        val comment1 = Comment(comment = "soon and very soon...")
-        val comment2 = Comment(comment = "let's do this...")
-
-        println(comment1)
-        println(comment2)
-
-        post.addComment(comment1)
-        post.addComment(comment2)
-
-        println(post)
-
+//        val post = Post(title = "Spring Data Jpa...")
+//        val comment1 = Comment(comment = "soon and very soon...")
+//        val  comment2 = Comment(comment = "let's do this...")
+//
+//        println(comment1)
+//        println(comment2)
+//
+//        post.addComment(comment1)
+//        post.addComment(comment2)
+//
+//        println(post)
+//
         val session = entityManager.unwrap(Session::class.java)
-        session.save(post)
-        //session.save(comment1)
-        //session.save(comment2)
+//        session.save(post)
+//        session.save(comment1)
+//        session.save(comment2)
 
+        //val post1 = session.get(Post::class.java, 1L)
+        val comment1 = session.get(Comment::class.java, 2L)
+        val comment2 = session.get(Comment::class.java, 3L)
+        println("comment chk ++++++++++++++++++++++++++++")
+        println(comment1.post?.title)
+        println(comment2.post?.title)
     }
 }

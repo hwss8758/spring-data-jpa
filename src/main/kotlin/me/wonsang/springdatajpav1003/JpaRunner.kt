@@ -49,8 +49,8 @@ class JpaRunner : ApplicationRunner {
         // 따라서 아래와 같이 session.load(Account::class.java, account.id)를 하면
         // cash에서 로드가 되고 그 후에 DB에 저장이 된다
         // 아래의 주석코드 참고.
-        session.save(account)
-        session.save(study)
+        //session.save(account)
+        //session.save(study)
 
         // val wonsang = session.load(Account::class.java, account.id)
         // wonsang.username = "iheon"

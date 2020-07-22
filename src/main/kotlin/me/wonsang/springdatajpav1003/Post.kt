@@ -8,7 +8,9 @@ data class Post(
         @GeneratedValue
         var id: Long? = null,
         var title: String = "",
-        @OneToMany(mappedBy = "post", cascade = [CascadeType.ALL])
+        @OneToMany(mappedBy = "post",
+                cascade = [CascadeType.ALL],
+                fetch = FetchType.LAZY)
         var comments: MutableSet<Comment>? = null
 ) {
     fun addComment(comment: Comment) {
