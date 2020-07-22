@@ -13,12 +13,12 @@ import javax.persistence.PersistenceContext
 class JpaRunner : ApplicationRunner {
 
     // entity를 영구 저장하는 환경이라는 뜻
-    @PersistenceContext
-    lateinit var entityManager: EntityManager
+//    @PersistenceContext
+//    lateinit var entityManager: EntityManager
 
     override fun run(args: ApplicationArguments?) {
-        val account = Account(username = "yiseo",
-                password = "jpa")
+        //val account = Account(username = "yiseo",
+        //        password = "jpa")
 
         //--------------------------------------------
         // ManyToOne
@@ -37,14 +37,14 @@ class JpaRunner : ApplicationRunner {
         // 관계의 주인인 쪽에다가 관계를 맺어줘야한다.
         // account, study 모두 설정해줘야한다.
         //--------------------------------------------
-        val study = Study(name = "Spring data JPA")
+        //val study = Study(name = "Spring data JPA")
         // account.studies?.add(study)
         // study.owner = account
-        account.addStudy(study)
+        //account.addStudy(study)
         //-----------------------------------------------------
         // hibernate session 추출을 통해 account 저장
         //-----------------------------------------------------
-        val session = entityManager.unwrap(Session::class.java)
+        //val session = entityManager.unwrap(Session::class.java)
         // session에 save를 하면 persistent context에 저장이 된다(cash에 저장이 되고 아직 db에는 저장이 된 상태는 아님)
         // 따라서 아래와 같이 session.load(Account::class.java, account.id)를 하면
         // cash에서 로드가 되고 그 후에 DB에 저장이 된다

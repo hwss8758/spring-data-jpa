@@ -13,8 +13,8 @@ import javax.persistence.PersistenceContext
 class JpaCascadeRunner : ApplicationRunner {
 
     // entity를 영구 저장하는 환경이라는 뜻
-    @PersistenceContext
-    lateinit var entityManager: EntityManager
+//    @PersistenceContext
+//    lateinit var entityManager: EntityManager
 
     override fun run(args: ApplicationArguments?) {
 //        val post = Post(title = "Spring Data Jpa...")
@@ -29,16 +29,16 @@ class JpaCascadeRunner : ApplicationRunner {
 //
 //        println(post)
 //
-        val session = entityManager.unwrap(Session::class.java)
+        //val session = entityManager.unwrap(Session::class.java)
 //        session.save(post)
 //        session.save(comment1)
 //        session.save(comment2)
 
         //val post1 = session.get(Post::class.java, 1L)
-        val comment1 = session.get(Comment::class.java, 2L)
-        val comment2 = session.get(Comment::class.java, 3L)
-        println("comment chk ++++++++++++++++++++++++++++")
-        println(comment1.post?.title)
-        println(comment2.post?.title)
+        //val comment1 = session.get(Comment::class.java, 2L)
+        //val comment2 = session.get(Comment::class.java, 3L)
+//        println("comment chk ++++++++++++++++++++++++++++")
+//        println(comment1.post?.title)
+//        println(comment2.post?.title)
     }
 }
