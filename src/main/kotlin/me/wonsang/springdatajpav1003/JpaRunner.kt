@@ -45,9 +45,19 @@ class JpaRunner : ApplicationRunner {
         // hibernate session 추출을 통해 account 저장
         //-----------------------------------------------------
         val session = entityManager.unwrap(Session::class.java)
+        // session에 save를 하면 persistent context에 저장이 된다(cash에 저장이 되고 아직 db에는 저장이 된 상태는 아님)
+        // 따라서 아래와 같이 session.load(Account::class.java, account.id)를 하면
+        // cash에서 로드가 되고 그 후에 DB에 저장이 된다
+        // 아래의 주석코드 참고.
         session.save(account)
         session.save(study)
 
+        // val wonsang = session.load(Account::class.java, account.id)
+        // wonsang.username = "iheon"
+        // println("================================================")
+        // println("chk session.load ===============================")
+        // println(wonsang)
+        // println("================================================")
         //-----------------------------------------------------
         // entitymanager 사용하여 처리
         //-----------------------------------------------------
