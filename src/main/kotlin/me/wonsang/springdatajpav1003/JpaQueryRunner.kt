@@ -32,13 +32,13 @@ class JpaQueryRunner : ApplicationRunner {
         // 타입세이프 쿼리 
         //----------------------------------------------
 
-        val criteriaBuilder = entityManager.criteriaBuilder
-        val createQuery = criteriaBuilder.createQuery(Post::class.java)
-        val root = createQuery.from(Post::class.java)
-        createQuery.select(root)
-
-        val posts = entityManager.createQuery(createQuery).resultList
-
-        posts.forEach { println(it.title) }
+//        val criteriaBuilder = entityManager.criteriaBuilder
+//        val createQuery = criteriaBuilder.createQuery(Post::class.java)
+//        val root = createQuery.from(Post::class.java)
+//        createQuery.select(root)
+//
+//        val posts = entityManager.createQuery(createQuery).resultList
+//
+//        posts.forEach { println(it.title) }
     }
 }
