@@ -13,11 +13,23 @@ class CommentRepositoryTest {
 
     @Test
     fun crud() {
-        val comment = Comment(comment = "Hello Comment")
-        commentRepository.save(comment)
+//        val comment = Comment(comment = "Hello Comment")
+//        commentRepository.save(comment)
+//
+//        val commentFindAll = commentRepository.findAll()
+//
+//        assertThat(commentFindAll.size).isEqualTo(1)
+//
+//        val byId = commentRepository.findById<Comment>(100)
+//        assertThat(byId).isEmpty
 
-        val commentFindAll = commentRepository.findAll()
+        // 컬렉션은 비어있는 null을 리턴 하지 않고 비어있는 콜렉션을 리턴함
+        val commentList = commentRepository.findAll()
+        assertThat(commentList).isNotNull
 
-        assertThat(commentFindAll.size).isEqualTo(1)
+        commentRepository.save(null)
+
+
+
     }
 }
