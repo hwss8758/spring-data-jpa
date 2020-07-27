@@ -4,6 +4,9 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Sort
+import java.util.stream.Stream
 
 @DataJpaTest
 class CommentRepositoryTest {
@@ -27,6 +30,24 @@ class CommentRepositoryTest {
 //        val commentList = commentRepository.findAll()
 //        assertThat(commentList).isNotNull
 
+        //val comment = Comment(comment = "spring data jpa", likeCount = 100)
+        //commentRepository.save(comment)
+
+        commentRepository.save(Comment(comment = "spring data jpa", likeCount = 100))
+        commentRepository.save(Comment(comment = "spring data jpa", likeCount = 90))
+
+        //val comments = commentRepository.findByCommentContainsIgnoreCaseAndLikeCountGreaterThan("Spring", 10)
+
+        val comments = commentRepository.findByCommentContainsIgnoreCaseOrderByLikeCountDesc("Spring")
+
+        assertThat(comments.size).isEqualTo(2)
+        assertThat(comments).first().hasFieldOrPropertyWithValue("likeCount", 100)
+
+        val pageRequest = PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "LikeCount"))
+        val page = commentRepository.findByCommentContainsIgnoreCase("Spring", pageRequest)
+        
+        assertThat(page.numberOfElements).isEqualTo(2)
+        assertThat(page).first().hasFieldOrPropertyWithValue("likeCount", 100)
 
     }
 }
