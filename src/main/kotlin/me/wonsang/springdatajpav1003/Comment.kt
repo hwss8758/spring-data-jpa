@@ -9,7 +9,8 @@ data class Comment(
         var id: Long? = null,
         var comment: String = "",
         @ManyToOne(fetch = FetchType.EAGER)
-        var post: Post? = null
+        var post: Post? = null,
+        var likeCount: Int? = null
 ) {
 
 }
